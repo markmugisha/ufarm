@@ -1,0 +1,44 @@
+extends layoutlists 
+block content
+    header.card-header
+        h4.text-white #{currentUser.ward}: List of Urban Farmers.
+        form(method="post" action="/logout")
+            button.btn.btn-success.btn-block(type="submit") Log out
+    br
+    nav
+    #nav-tab.nav.nav-tabs(role='#')
+        a#nav-profile-tab.nav-item.nav-link(href='/ufregister')
+    #nav-tabContent.tab-content
+    br
+    table.table.table-bordered 
+        thead
+            tr
+                th Unique ID  
+                th Full Name 
+                th NIN
+                th Phone number
+                th Gender 
+                th Activity
+                th Ward
+                th Update
+        tbody
+            if urbanFarmers.length
+                each urbanFarmer in urbanFarmers
+                    if urbanFarmer.ward == currentUser.ward
+                        tr
+                            td #{urbanFarmer.uniqueid}
+                            td #{urbanFarmer.fullname}
+                            td #{urbanFarmer.nin}
+                            td #{urbanFarmer.phone}
+                            td #{urbanFarmer.gender}
+                            td #{urbanFarmer.activity}
+                            td #{urbanFarmer.ward}
+                            td
+                                a.btn.btn-success.btn-block(href='/urbanFarmer/update/'+urbanFarmer._id) Update
+                            
+    div.form-row
+        div.col.form-group
+            a.btn.btn-success.btn-block(class='button' href='/FO_reports') Back
+    
+block footer
+    div.col-md-12 

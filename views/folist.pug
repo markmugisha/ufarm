@@ -1,0 +1,34 @@
+extends layoutlists 
+block content
+    header.card-header
+        h4.card-title List of all FOs. Logged in as: 
+           span.text-white #{currentUser.fullname} (AO).
+        form(method="post" action='/logout') 
+          button.btn.btn-success.btn-block(type="submit") Log out
+    br
+    table.table.table-bordered 
+        thead
+            tr
+                th Unique ID  
+                th Full Name 
+                th NIN
+                th Phone number
+                th Ward
+                th Update
+        tbody
+            if farmerones.length
+                each farmerone in farmerones
+                    if farmerone.uniqueid == currentUser.uniqueid
+                    tr
+                        td #{farmerone.uniqueid}
+                        td #{farmerone.fullname}
+                        td #{farmerone.nin}
+                        td #{farmerone.phone}
+                        td #{farmerone.ward}
+                        td
+                            a.button.btn.btn-success.btn-block(href='/farmerone/update/'+farmerone._id) Update                      
+    div.col.form-group
+    a.btn.btn-success.btn-block(class='button' href='/aodashboardroute') Back
+
+block footer
+    div.col-md-12 

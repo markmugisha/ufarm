@@ -1,0 +1,101 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Order 
+
+body
+    style.
+        body{
+          background: linear-gradient(135deg, #0a663dca, #05073a);  
+        }
+        
+        .form-style{
+        position:absolute;
+        top:5%;  
+        text-align:center;
+        color:rgba(240, 220, 253);
+        font-weight: 600px;
+        font-size: 18px;
+        font-weight:300;
+        }
+       
+        .form-field{
+            width: 150px;
+            text-align: center;
+            font-weight:300;
+            margin-left: 200px; 
+            display: inline-block;
+            font-family: Sans-serif;
+        }
+        .form-field input, select{
+            text-align:center;
+            background: #fff;
+            font-weight: 400;
+            margin:20px;
+            width: 300px;
+            height: 60px;
+            border-radius: 10px;
+        }
+
+        .form-btn{
+            margin-top:40px;
+            padding:25px;
+        }
+
+        .btn{
+            padding-top:18px;
+            padding-bottom:18px;
+            font-size:20px;
+            border-radius: 5px;
+            font: #fff;
+            color: black; 
+        }
+     
+        .btn:hover{
+           box-shadow:0 0 6px 5px rgb(0,0,0,0.87);
+           color: red; 
+        }
+
+        #booked{
+            font-size:20px;
+        }
+
+        #customeremail{
+           font-size:20px;
+        }
+
+        #customerphone{
+          font-size:20px;  
+        }
+
+        hr{
+            width: 1700px;
+        }
+        h3{
+            font-family: Sans-serif;
+            font-size: 30px;
+        }
+
+.container-fluid.form-style
+    form#signup.form(action='/produce/order/?id='+item._id name='registration' method='POST')
+        h3 Please enter your details to book product. 
+        hr
+        .row
+            .col
+                .form-field
+                    label(for='availability') Availability: 
+                    select#booked(name='availability')
+                        option(value="booked" selected = item.availability === 'booked') Booked
+                .form-field
+                    label(for='')
+                        | Customer Email:
+                    input#customeremail(type='text' name='customeremail' autocomplete='off')
+                .form-field
+                    label(for='')
+                        | Customer Phone:
+                    input#customerphone(type='text' name='customerphone' autocomplete='off')
+                .form-field
+                    input.btn(type='submit' value='Order')
+script(src='bootstrap-js/js/bootstrap.bundle.js')

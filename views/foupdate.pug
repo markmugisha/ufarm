@@ -1,0 +1,158 @@
+doctype html
+head
+    title Farmer One Update
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT' crossorigin='anonymous')
+
+body
+    style.
+        body{
+          background: linear-gradient(135deg, #0d5032, rgba(20,20,20));  
+        }
+        
+        .form-style{
+        position: relative;
+        max-width: 1300px;
+        width: 1200px;
+        border-radius: 6px;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        margin-left: 240px;
+        margin-top: 60px;
+        height: 770px;
+        }
+
+         .form-field{
+            width: 110px;
+            font-weight:300;
+            margin-left: 20px; 
+            font-family: Sans-serif;
+           
+        }
+     
+
+      label {
+        display: inline-block;
+        width: 150px;
+        text-align: left;
+        font-weight:500; 
+        margin-left: 25px;
+      }
+        .form-field input, select{
+            text-align:left;
+            background: #fff;
+            font-weight: 400;
+            margin:20px;
+            width: 300px;
+            height: 50px;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+
+        .form-btn{
+            margin-top:40px;
+            margin-left:12px;
+            padding:25px;
+        }
+
+        .btn{
+            width:300px;
+            background: #0d5032;
+            padding-top:18px;
+            padding-bottom:18px;
+            font-size:20px;
+            font-weight:500;
+            margin-left:418px;
+            border-radius: 7px;
+            color:#fff; 
+            height: 60px;
+        }
+     
+        .btn:hover{
+           box-shadow:0 0 6px 5px rgb(0,0,0,0.87);
+
+        }
+
+        h3{
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+    .container-fluid.form-style
+        form#signup.form(action='/farmerone/update?id='+farmerones._id name='registration' method='POST' onsubmit="return formValidatefoup(event);")
+            h3 FARMER ONE UPDATE 
+            hr
+            .row
+                .col-lg-4
+                    .form-field
+                        label Unique ID
+                        input#uniqueid(type='text' name='uniqueid' autocomplete='off' value=farmerones.uniqueid)
+                        small#uniqueidError
+                .col-lg-4
+                    .form-field
+                        label Role
+                        input#role(type='text' name='role' autocomplete='off' value=farmerones.role)
+                        small#roleError
+                .col-lg-4
+                    .form-field
+                        label First and Last Name
+                        input#fullname(type='text' name='fullname' autocomplete='off' value=farmerones.fullname)
+                        small#fullNameError
+                .col-lg-4
+                    .form-field
+                        label NIN
+                        input#nin(type='text' name='nin' autocomplete='off' value=farmerones.nin)
+                        small#ninError
+                .col-lg-4
+                    .form-field
+                        label Date of Birth
+                        input#dob(type='date' name='dob' autocomplete='off' value=farmerones.dob)
+                        small#dobError
+                .col-lg-4
+                    .form-field
+                        label Date of Registration
+                        input#doreg(type='date' name='doreg' autocomplete='off' value=farmerones.doreg)
+                        small#doregError
+                .col-lg-4
+                    .form-field
+                        label Phone number
+                        input#phone(type='text' name='phone' autocomplete='off' value=farmerones.phone)
+                        #phoneNumberError
+                .col-lg-4
+                    .form-field
+                        label Password
+                        input#password(type='password' name='password' autocomplete='off' value=farmerones.password)
+                        #passwordError
+                .col-lg-4
+                    .form-field
+                        label Gender
+                        select#gender(name='gender')
+                            option(value='Male' selected = farmerones.gender === 'Male') Male
+                            option(value= 'Female' selected = farmerones.gender === 'Female') Female 
+                        small#genderError
+                .col-lg-4
+                    .form-field
+                        label Activity:
+                        select#activity(name='activity')
+                            option(value="Horticulture" selected = farmerones.activity === 'Horticulture') Horticulture
+                            option(value="Poultry" selected = farmerones.activity === 'Poultry') Poultry 
+                            option(value="Diary" selected = farmerones.activity === 'Diary') Diary   
+                        small#activityError
+                .col-lg-4
+                    .form-field
+                        label Residence Type
+                        select#residencetype(name='residencetype')
+                            option(value="Permanent" selected = farmerones.residencetype === 'Permanent') Permanent
+                            option(value="Temporary" selected = farmerones.residencetype === 'Temporary') Temporary 
+                        small#residencetypeError
+                .col-lg-4
+                    .form-field
+                        label Years at Residence
+                        input#duration(type="number" name='duration' min ='10' value = farmerones.duration)
+                        small#durationError
+                .form-btn
+                    button.btn(class='button' type='submit') Update
+    script(src="/JS/form_validationfoupdate.js")

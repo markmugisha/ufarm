@@ -1,0 +1,48 @@
+extends layoutlists 
+block content
+    header.card-header
+        h4.card-title Products Pending Approval - #{currentUser.ward}.
+        form(method="post" action='/logout') 
+          button.btn.btn-success.btn-block(type="submit") Log out 
+    
+    br
+    nav
+    #nav-tab.nav.nav-tabs(role='tablist')
+    #nav-tabContent.tab-content
+    br
+    table.table.table-bordered 
+        thead
+            tr
+                th Ward
+                th Supplier Name
+                th Produce Name
+                th Quantity
+                th Unit Price
+                th Total Amount
+                th Product Type
+                th Status
+                th Image 
+                th Approve 
+        tbody
+            if products.length
+                each product in products
+                    if product.status == 'Pending' && product.ward === currentUser.ward
+                        tr
+                            td #{product.ward}
+                            td #{product.fullname}
+                            td #{product.productname}
+                            td #{product.quantity}
+                            td #{product.unitprice}
+                            td #{product.totalamount}
+                            td #{product.producttype}
+                            td #{product.status}
+                            td 
+                                img(src="/"+product.uploadimage, alt="Image" width='150px' height="150px")
+                            td
+                                a.btn.btn-success.btn-block(href='/produce/approve/'+product._id) Approve
+                            
+    div.col.form-group
+    a.btn.btn-success.btn-block(class='button' href='/FO_reports') Back
+
+block footer
+    div.col-md-12 

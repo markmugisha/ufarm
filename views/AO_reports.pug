@@ -1,0 +1,167 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css' rel='stylesheet')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css')
+  link(rel='stylesheet' href='css/aodashboard.css')
+  title Agric Officer Dashboard
+#wrapper.d-flex
+  #sidebar-wrapper
+    .sidebar-heading.text-left.py-4.fs-4.fw-bold.text-uppercase.border-bottom Ufarm
+    .list-group.list-group-flush.my-3
+      a.list-group-item.list-group-item-action.bg-transparent.second-text.active(href='#')
+      a.list-group-item.list-group-item-action.bg-transparent.second-text.fw-bold(href='/foregister') Register Farmer One
+      a.list-group-item.list-group-item-action.bg-transparent.second-text.fw-bold(href='/folist') Farmer One List
+        div.form-row
+          div.col.form-group
+            a.btn.btn-success.text-white(class='button' href='/fosdashboard') Back
+  
+  #page-content-wrapper
+    nav.navbar.navbar-expand-lg.navbar-light.bg-transparent.py-4.px-4
+      .d-flex.align-items-center
+        h2.fs-2.m-0.text-white Agricultural Officer Dashboard
+      button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.ms-auto.mb-2.mb-lg-0
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle.second-text.fw-bold(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+              span.text-white #{currentUser.fullname}
+        form(method="post" action='/logout') 
+          button.btn.btn-success.btn-block(type="submit") Log out
+    .container-fluid.px-4
+      .row.g-3.my-2
+        .col-md-3
+          .p-3.bg-white.shadow-sm.d-flex.justify-content-around.align-items-center.rounded
+            div
+              h3.fs-3 Poultry Sales:
+              h3.fs-2 #{new Intl.NumberFormat().format(totalP.totalCost)} UGX 
+              p.fs-5 Total Products: #{new Intl.NumberFormat().format(totalP.totalQuantity)}.
+        .col-md-3
+          .p-3.bg-white.shadow-sm.d-flex.justify-content-around.align-items-center.rounded
+            div
+              h3.fs-3 Horticulture Sales:
+              h3.fs-2 #{new Intl.NumberFormat().format(totalH.totalCost)} UGX 
+              p.fs-5 Total Products: #{new Intl.NumberFormat().format(totalH.totalQuantity)}.
+        .col-md-3
+          .p-3.bg-white.shadow-sm.d-flex.justify-content-around.align-items-center.rounded
+            div
+              h3.fs-3 Dairy Sales:
+              h3.fs-2 #{new Intl.NumberFormat().format(totalD.totalCost)} UGX 
+              p.fs-5 Total Products: #{new Intl.NumberFormat().format(totalD.totalQuantity)}.
+
+        .col-md-3
+          .p-3.bg-white.shadow-sm.d-flex.justify-content-around.align-items-center.rounded
+            div
+              h3.fs-3 Gross Sales:
+              h3.fs-2 #{new Intl.NumberFormat().format(totalD.totalCost + totalH.totalCost + totalP.totalCost)} UGX 
+              p.fs-5 Total Products: #{new Intl.NumberFormat().format(totalD.totalQuantity + totalH.totalQuantity + totalP.totalQuantity)}.
+      .row.my-5
+        .col-12.col-md-6.col-lg-4
+          h3.fs-4.mb-3.text-white Inventory: Poultry
+          table.table.bg-white.rounded.shadow-sm.table-hover
+            thead
+              tr
+                th(scope='col' width='50') #
+                th(scope='col') Product Name
+                th(scope='col' class="tableentries") Quantity
+            tbody
+              tr
+                th(scope='row') 1.
+                td Chicken  
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalCn.totalQuantity)}
+              tr
+                th(scope='row') 2.
+                td Eggs   
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalE.totalQuantity)}
+              tr
+                th(scope='row') 3.
+                td Chicks 
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalCs.totalQuantity)}
+              tr
+                th(scope='row') 4.
+                td Dressed Chicken
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalDc.totalQuantity)}
+              tr
+                th(scope='row') 5.
+                td Drum Sticks
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalDs.totalQuantity)}
+              tr
+                th(scope='row') 6.
+                td Gizzard 
+                td(class="tableentries")  #{new Intl.NumberFormat().format(totalGz.totalQuantity)}
+        .col-12.col-md-6.col-lg-4
+          h3.fs-4.mb-3.text-white Inventory: Horticulture
+          table.table.bg-white.rounded.shadow-sm.table-hover
+            thead
+              tr
+                th(scope='col' width='50') #
+                th(scope='col') Product
+                th(scope='col' class="tableentries") Quantity
+            tbody
+              tr
+                th(scope='row') 1.
+                td Beans
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalB.totalQuantity)}
+              tr
+                th(scope='row') 2.
+                td Maize
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalMz.totalQuantity)}
+              tr
+                th(scope='row') 3.
+                td Tomatoes
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalTm.totalQuantity)}
+              tr
+                th(scope='row') 4.
+                td Cabbage
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalCb.totalQuantity)}
+              tr
+                th(scope='row') 5.
+                td Sweet Pepper
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalSp.totalQuantity)}
+              tr
+                th(scope='row') 6.
+                td Okra
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalOk.totalQuantity)}
+        .col-12.col-md-6.col-lg-4
+          h3.fs-4.mb-3.text-white Inventory: Dairy
+          table.table.bg-white.rounded.shadow-sm.table-hover
+            thead
+              tr
+                th(scope='col' width='50') #
+                th(scope='col') Product
+                th(scope='col' class="tableentries") Quantity
+            tbody
+              tr
+                th(scope='row') 1.
+                td Milk
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalMk.totalQuantity)}
+              tr
+                th(scope='row') 2.
+                td Calves 
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalCv.totalQuantity)}
+              tr
+                th(scope='row') 3.
+                td Ghee
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalGi.totalQuantity)}
+              tr
+                th(scope='row') 4.
+                td Cheese
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalCz.totalQuantity)}
+              tr
+                th(scope='row' ) 5.
+                td Yoghurt
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalE.totalQuantity)}
+              tr
+                th(scope='row') 6.
+                td Heifers
+                td(class="tableentries") #{new Intl.NumberFormat().format(totalHf.totalQuantity)}
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js')
+script.
+  var el = document.getElementById("wrapper");
+  var toggleButton = document.getElementById("menu-toggle");
+  toggleButton.onclick = function () {
+  el.classList.toggle("toggled");
+  };
