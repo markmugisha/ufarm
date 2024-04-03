@@ -23,6 +23,8 @@ const ufRoutes = require('./routes/ufRoutes');
 const foRoutes = require('./routes/foRoutes');
 const authRoutes = require('./routes/authRoutes');
 const produceRoutes = require('./routes/produceRoutes'); 
+const { get } = require("http");
+const { getServers } = require("dns");
 
 
 //INSNTANTIATIONS---------------------/
@@ -67,7 +69,6 @@ app.use('/', aoRoutes);
 app.use('/', foRoutes);
 app.use('/', authRoutes);
 app.use('/', produceRoutes);
-
 
 // For invalid routes. always the last route in the server file(index.js)
 app.get("*", (req, res) => {
